@@ -3,27 +3,22 @@ using namespace std;
 
 int main()
 {
-    long long m, n;
-    cin >> n >> m;
+    string s;
+    cin >> s;
 
-    if(m%n!=0){
-        cout << -1;
-        return 0;
+    transform(s.begin(), s.end(), s.begin(), ::tolower);
+    vector<char> requiredString;
+
+    for(int i=0;s[i]!='\0';i++)
+    {
+        if(s[i]!='a' && s[i]!='e' && s[i]!='i' && s[i]!='o' && s[i]!='u' && s[i]!='y')
+        {
+            requiredString.push_back('.');
+            requiredString.push_back(s[i]);
+        }
     }
 
-    long long x = m/n;
-    int moves = 0;
+    string final(requiredString.begin(), requiredString.end());
 
-    while(x%2==0){
-        x = x/2;
-        moves++;
-    }
-
-    while(x%3==0){
-        x = x/3;
-        moves++;
-    }
-
-    if(x!=1) cout << -1;
-    else cout << moves;
+    cout << final;
 }
